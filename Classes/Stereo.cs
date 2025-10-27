@@ -8,52 +8,33 @@ namespace CommandPattern.Classes
 {
     internal class Stereo
     {
-        private readonly string location;
-        private string? source = null;
-        private int volume = 0;
-        private bool isOn = false;
-
-        public Stereo(string location)
-        {
-            this.location = location;
-        }
-
         public void On()
         {
-            isOn = true;
-            Console.WriteLine($"{location} stereo is ON");
+            Console.WriteLine("Stereo was turned on");
         }
 
         public void Off()
         {
-            isOn = false;
-            Console.WriteLine($"{location} stereo is OFF");
+            Console.WriteLine("Stereo was turned off");
         }
 
-        public void SetCd()
+        public void SetCD()
         {
-            source = "CD";
-            Console.WriteLine($"{location} stereo set to CD");
+            Console.WriteLine("Stereo was turned to CD mode");
         }
 
-        public void SetDvd()
+        public void SetDVD()
         {
-            source = "DVD";
-            Console.WriteLine($"{location} stereo set to DVD");
+            Console.WriteLine("Stereo was turned to DVD mode");
         }
-
         public void SetRadio()
         {
-            source = "Radio";
-            Console.WriteLine($"{location} stereo set to RADIO");
+            Console.WriteLine("Stereo was turned to Radio mode");
         }
 
         public void SetVolume(int volume)
         {
-            this.volume = volume;
-            Console.WriteLine($"{location} stereo volume set to {volume}");
+            Console.WriteLine("Stereo volume set to" + volume);
         }
-
-        public (bool on, string? src, int vol) State() => (isOn, source, volume);
     }
 }

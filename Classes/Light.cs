@@ -8,26 +8,20 @@ namespace CommandPattern.Classes
 {
     internal class Light
     {
-        private readonly string location;
-        private bool isOn;
-
+        private string location;
         public Light(string location)
         {
             this.location = location;
         }
-
         public void On()
         {
-            isOn = true;
-            Console.WriteLine($"{location} light is ON");
+            Console.WriteLine($"{location} Light is turned on");
         }
 
         public void Off()
         {
-            isOn = false;
-            Console.WriteLine($"{location} light is OFF");
-        }
+            Console.WriteLine($"{location} Light is turned off");
 
-        public bool IsOn() => isOn;
+        }
     }
 }

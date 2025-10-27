@@ -1,4 +1,5 @@
-﻿using CommandPattern.Classes;
+﻿using System;
+using CommandPattern.Classes;
 using CommandPattern.Classes.Commands;
 using CommandPattern.Interfaces;
 
@@ -12,41 +13,50 @@ namespace CommandPattern
 
             Light livingRoomLight = new Light("Living Room");
             CeilingFan livingRoomFan = new CeilingFan("Living Room");
-            GarageDoor garageDoor = new GarageDoor("Main House");
-            Stereo stereo = new Stereo("Living Room");
+
+            Light garageLight = new Light("Garage Light");
+            GarageDoor garageDoor = new GarageDoor(garageLight);
+
+            Stereo stereo = new Stereo();
 
             LightOnCommand lightOn = new LightOnCommand(livingRoomLight);
             LightOffCommand lightOff = new LightOffCommand(livingRoomLight);
+
             CeilingFanMediumCommand fanMedium = new CeilingFanMediumCommand(livingRoomFan);
             CeilingFanHighCommand fanHigh = new CeilingFanHighCommand(livingRoomFan);
             CeilingFanOffCommand fanOff = new CeilingFanOffCommand(livingRoomFan);
+
             GarageDoorUpCommand garageUp = new GarageDoorUpCommand(garageDoor);
-            StereoOnWithCdCommand stereoOnCd = new StereoOnWithCdCommand(stereo);
+            GarageDoorDownCommand garageDown = new GarageDoorDownCommand(garageDoor);
+
+            StereoOnWithCDCommand stereoOnCd = new StereoOnWithCDCommand(stereo);
             StereoOffCommand stereoOff = new StereoOffCommand(stereo);
 
             remoteControl.SetCommand(0, lightOn, lightOff);
-            remoteControl.SetCommand(1, fanHigh, fanOff);
-            remoteControl.SetCommand(2, garageUp, garageUp);
-            remoteControl.SetCommand(3, stereoOnCd, stereoOff);
+            remoteControl.SetCommand(1, fanMedium, fanOff);
+            remoteControl.SetCommand(2, fanHigh, fanOff);
+            remoteControl.SetCommand(3, garageUp, garageDown);
+            remoteControl.SetCommand(4, stereoOnCd, stereoOff);
 
             remoteControl.OnButtonWasPushed(0);
             remoteControl.OffButtonWasPushed(0);
             remoteControl.UndoButtonWasPushed();
             remoteControl.UndoButtonWasPushed();
 
-            fanMedium.Execute();
-            fanHigh.Execute();
-            fanOff.Execute();
-            remoteControl.UndoButtonWasPushed();
-            remoteControl.UndoButtonWasPushed();
-            remoteControl.UndoButtonWasPushed();
-
+            remoteControl.OnButtonWasPushed(1);
             remoteControl.OnButtonWasPushed(2);
+            remoteControl.OffButtonWasPushed(2);
+
+            remoteControl.UndoButtonWasPushed();
             remoteControl.UndoButtonWasPushed();
             remoteControl.UndoButtonWasPushed();
 
             remoteControl.OnButtonWasPushed(3);
-            remoteControl.OffButtonWasPushed(3);
+            remoteControl.UndoButtonWasPushed();
+            remoteControl.UndoButtonWasPushed();
+
+            remoteControl.OnButtonWasPushed(4);
+            remoteControl.OffButtonWasPushed(4);
             remoteControl.UndoButtonWasPushed();
 
             MacroCommand partyOn = new MacroCommand(new Command[]
@@ -59,17 +69,16 @@ namespace CommandPattern
                 lightOff, fanOff, stereoOff
             });
 
-            remoteControl.SetCommand(4, partyOn, partyOff);
+            remoteControl.SetCommand(5, partyOn, partyOff);
 
             Console.WriteLine("Party ON (macro)");
-            remoteControl.OnButtonWasPushed(4);
+            remoteControl.OnButtonWasPushed(5);
 
             Console.WriteLine("Party OFF (macro)");
-            remoteControl.OffButtonWasPushed(4);
+            remoteControl.OffButtonWasPushed(5);
 
             Console.WriteLine("Undo party (macro)");
             remoteControl.UndoButtonWasPushed();
-
         }
     }
 }

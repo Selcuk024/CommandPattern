@@ -9,7 +9,7 @@ namespace CommandPattern.Classes.Commands
 {
     internal class StereoOnWithDvdCommand : Command
     {
-        private readonly Stereo stereo;
+        Stereo stereo;
 
         public StereoOnWithDvdCommand(Stereo stereo)
         {
@@ -19,7 +19,6 @@ namespace CommandPattern.Classes.Commands
         public void Execute()
         {
             stereo.On();
-            stereo.SetDvd();
             stereo.SetVolume(11);
         }
 
@@ -28,9 +27,5 @@ namespace CommandPattern.Classes.Commands
             stereo.Off();
         }
 
-        public override string ToString()
-        {
-            return "Stereo on DVD";
-        }
     }
 }

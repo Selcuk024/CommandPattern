@@ -9,7 +9,7 @@ namespace CommandPattern.Classes.Commands
 {
     internal class StereoOnWithRadioCommand : Command
     {
-        private readonly Stereo stereo;
+        Stereo stereo;
 
         public StereoOnWithRadioCommand(Stereo stereo)
         {
@@ -28,10 +28,6 @@ namespace CommandPattern.Classes.Commands
             stereo.Off();
         }
 
-        public override string ToString()
-        {
-            return "Stereo on Radio";
-        }
     }
 }
 

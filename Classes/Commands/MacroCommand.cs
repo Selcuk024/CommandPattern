@@ -9,7 +9,7 @@ namespace CommandPattern.Classes.Commands
 {
     internal class MacroCommand : Command
     {
-        private readonly Command[] commands;
+        Command[] commands;
 
         public MacroCommand(Command[] commands)
         {
@@ -18,17 +18,17 @@ namespace CommandPattern.Classes.Commands
 
         public void Execute()
         {
-            foreach (var cmd in commands)
+            foreach (Command c in commands)
             {
-                cmd.Execute();
+                c.Execute();
             }
         }
 
         public void Undo()
         {
-            for (int i = commands.Length - 1; i >= 0; i--)
+            foreach (Command c in commands)
             {
-                commands[i].Undo();
+                c.Undo();
             }
         }
 

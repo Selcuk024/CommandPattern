@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace CommandPattern.Classes.Commands
 {
-    internal class StereoOnWithCdCommand : Command
+    internal class StereoOnWithCDCommand : Command
     {
-        private readonly Stereo stereo;
-
-        public StereoOnWithCdCommand(Stereo stereo)
+        Stereo stereo;
+        public StereoOnWithCDCommand(Stereo stereo)
         {
             this.stereo = stereo;
         }
@@ -19,18 +18,13 @@ namespace CommandPattern.Classes.Commands
         public void Execute()
         {
             stereo.On();
-            stereo.SetCd();
+            stereo.SetCD();
             stereo.SetVolume(11);
         }
 
         public void Undo()
         {
             stereo.Off();
-        }
-
-        public override string ToString()
-        {
-            return "Stereo on CD";
         }
     }
 }

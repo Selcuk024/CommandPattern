@@ -3,47 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System;
 
 namespace CommandPattern.Classes
 {
     internal class GarageDoor
     {
-        private readonly string location;
-        private bool isOpen;
-
-        public GarageDoor(string location)
+        Light light;
+        public GarageDoor(Light light)
         {
-            this.location = location;
+            this.light = light;
         }
-
         public void Up()
         {
-            isOpen = true;
-            Console.WriteLine($"{location} garage door is OPEN");
+            Console.WriteLine("Door is open");
         }
 
         public void Down()
         {
-            isOpen = false;
-            Console.WriteLine($"{location} garage door is CLOSED");
+            Console.WriteLine("Door is closed");
         }
 
         public void Stop()
         {
-            Console.WriteLine($"{location} garage door STOPPED");
+            Console.WriteLine("Door stopped moving");
         }
 
         public void LightOn()
         {
-            Console.WriteLine($"{location} garage door light is ON");
+            Console.WriteLine("Garage door");
+            light.On();
         }
 
         public void LightOff()
         {
-            Console.WriteLine($"{location} garage door light is OFF");
+            Console.WriteLine("Garage door");
+            light.On();
         }
-
-        public bool IsOpen() => isOpen;
     }
 }

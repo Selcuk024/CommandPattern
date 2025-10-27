@@ -9,25 +9,19 @@ namespace CommandPattern.Classes.Commands
 {
     internal class GarageDoorDownCommand : Command
     {
-        private readonly GarageDoor door;
-        public GarageDoorDownCommand(GarageDoor door)
+        GarageDoor garageDoor;
+        public GarageDoorDownCommand(GarageDoor garageDoor)
         {
-            this.door = door;
+            this.garageDoor = garageDoor;
         }
-
         public void Execute()
         {
-            door.Down();
+            garageDoor.Down();
         }
 
         public void Undo()
         {
-            door.Up();
-        }
-
-        public override string ToString()
-        {
-            return "GarageDoor Down";
+            garageDoor.Up();
         }
     }
 }

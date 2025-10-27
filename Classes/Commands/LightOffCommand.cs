@@ -10,7 +10,7 @@ namespace CommandPattern.Classes.Commands
 {
     internal class LightOffCommand : Command
     {
-        private readonly Light light;
+        Light light;
 
         public LightOffCommand(Light light)
         {

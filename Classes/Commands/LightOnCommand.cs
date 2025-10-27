@@ -9,7 +9,7 @@ namespace CommandPattern.Classes.Commands
 {
     internal class LightOnCommand : Command
     {
-        private readonly Light light;
+        Light light;
 
         public LightOnCommand(Light light)
         {

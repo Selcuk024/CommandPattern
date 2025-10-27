@@ -18,9 +18,5 @@ namespace CommandPattern.Classes.Commands
         {
         }
 
-        public override string ToString()
-        {
-            return "NoCommand";
-        }
     }
 }
